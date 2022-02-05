@@ -15,6 +15,6 @@ void term_enable_raw_mode() {
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 
-void term_disable_raw_mode() {
+void term_restore() {
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios);
 }
