@@ -19,6 +19,10 @@ void term_enable_raw_mode() {
   // Disable echo, line reading, <C-v> and interrupt signals
   raw.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
 
+  // Set timeout for read()
+  raw.c_cc[VMIN] = 0;
+  raw.c_cc[VTIME] = 1;
+
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 
