@@ -1,6 +1,8 @@
 #include "terminal.h"
+#include "util.h"
 
 #include <ctype.h>
+#include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +15,7 @@ int main() {
 
   while (true) {
     char c = '\0';
-    read(STDIN_FILENO, &c, 1);
+    QCHECK(read(STDIN_FILENO, &c, 1) >= 0 || errno == EAGAIN);
     if (iscntrl(c)) {
       printf("%d\n\r", c);
     } else {

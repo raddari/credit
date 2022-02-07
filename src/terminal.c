@@ -1,5 +1,7 @@
 #include "terminal.h"
 
+#include "util.h"
+
 #include <termios.h>
 #include <unistd.h>
 
@@ -8,7 +10,7 @@ static struct termios original_termios;
 
 
 void term_enable_raw_mode() {
-  tcgetattr(STDIN_FILENO, &original_termios);
+  QCHECK_EQ(tcgetattr(STDIN_FILENO, &original_termios), 0);
   struct termios raw = original_termios;
   // Miscellaneous flags for traditional "raw mode"
   raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON);
@@ -23,9 +25,9 @@ void term_enable_raw_mode() {
   raw.c_cc[VMIN] = 0;
   raw.c_cc[VTIME] = 1;
 
-  tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+  QCHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw), 0);
 }
 
 void term_restore() {
-  tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios);
+  QCHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios), 0);
 }
