@@ -14,6 +14,7 @@ int main() {
   atexit(term_restore);
 
   while (true) {
+    refresh_screen();
     char c = '\0';
     QCHECK(read(STDIN_FILENO, &c, 1) >= 0 || errno == EAGAIN);
     if (iscntrl(c)) {
