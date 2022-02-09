@@ -1,4 +1,4 @@
-#include "input.h"
+#include "editor.h"
 
 #include "util.h"
 
@@ -8,7 +8,11 @@
 #include <unistd.h>
 
 
-char read_key() {
+#define SEQ_CLEAR "\x1b[2J"
+#define SEQ_CURS_RESET "\x1b[H"
+
+
+char editor_read_key() {
   ssize_t nread;
   char c;
   while ((nread = read(STDIN_FILENO, &c, 1)) != 1) {
@@ -17,8 +21,8 @@ char read_key() {
   return c;
 }
 
-void process_keypress() {
-  char c = read_key();
+void editor_process_keypress() {
+  char c = editor_read_key();
 
   switch (c) {
     case CTRL_KEY('q'):
@@ -28,4 +32,9 @@ void process_keypress() {
     default:
       break;
   }
+}
+
+void editor_refresh_screen() {
+  write(STDOUT_FILENO, SEQ_CLEAR, sizeof SEQ_CLEAR);
+  write(STDOUT_FILENO, SEQ_CURS_RESET, sizeof SEQ_CURS_RESET);
 }

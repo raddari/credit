@@ -1,6 +1,5 @@
-#include "input.h"
+#include "editor.h"
 #include "terminal.h"
-#include "util.h"
 
 #include <ctype.h>
 #include <errno.h>
@@ -15,8 +14,8 @@ int main() {
   atexit(term_restore);
 
   while (true) {
-    refresh_screen();
-    process_keypress();
+    editor_refresh_screen();
+    editor_process_keypress();
   }
 
   return EXIT_SUCCESS;
