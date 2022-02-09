@@ -3,8 +3,10 @@ target_sources(${CREDIT_EXE} PRIVATE
   creddefs.h
   terminal.c
   terminal.h
-  util.c
-  util.h
   editor.c
   editor.h
+  util/common.c
+  util/common.h
+  util/strbuf.c
+  util/strbuf.h
   )

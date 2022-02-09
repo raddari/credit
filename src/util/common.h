@@ -15,4 +15,5 @@
 
 #define SET_NON_NULL(ptr, value) if (ptr) *(ptr) = (value)
 
+
 void die(const char *message);

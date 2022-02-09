@@ -1,7 +1,7 @@
 #include "editor.h"
 
 #include "creddefs.h"
-#include "util.h"
+#include "util/common.h"
 
 #include <errno.h>
 #include <stdint.h>

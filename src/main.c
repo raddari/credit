@@ -1,6 +1,6 @@
 #include "editor.h"
 #include "terminal.h"
-#include "util.h"
+#include "util/common.h"
 
 #include <stdbool.h>
 #include <stdlib.h>

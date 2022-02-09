@@ -1,7 +1,7 @@
 #include "terminal.h"
 
 #include "creddefs.h"
-#include "util.h"
+#include "util/common.h"
 
 #include <stdio.h>
 #include <stdlib.h>
