@@ -6,12 +6,8 @@
 
 
 void die(const char *message) {
-  refresh_screen();
+  STDOUT_WRITE("\x1b[2J");
+  STDOUT_WRITE("\x1b[H");
   perror(message);
   exit(EXIT_FAILURE);
-}
-
-void refresh_screen() {
-  write(STDOUT_FILENO, SEQ_CLEAR, sizeof SEQ_CLEAR);
-  write(STDOUT_FILENO, SEQ_CURS_RESET, sizeof SEQ_CURS_RESET);
 }
