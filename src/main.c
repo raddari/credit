@@ -1,5 +1,6 @@
 #include "editor.h"
 #include "terminal.h"
+#include "util.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -7,7 +8,10 @@
 
 int main() {
   term_enable_raw_mode();
-  atexit(term_restore);
+
+  EditorConfig config;
+  CHECK_EQ(term_window_size(&config.screen_rows, &config.screen_cols), 0);
+  editor_set_config(config);
 
   while (true) {
     editor_refresh_screen();

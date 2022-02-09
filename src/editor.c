@@ -9,6 +9,9 @@
 #include <unistd.h>
 
 
+static struct EditorConfig g_config;
+
+
 char editor_read_key() {
   ssize_t nread;
   char c;
@@ -41,7 +44,11 @@ void editor_refresh_screen() {
 }
 
 void editor_draw_rows() {
-  for (int row = 0; row < 24; row++) {
+  for (int row = 0; row < g_config.screen_rows; row++) {
     STDOUT_WRITE("~\n\r");
   }
+}
+
+void editor_set_config(EditorConfig config) {
+  g_config = config;
 }
