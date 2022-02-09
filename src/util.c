@@ -1,13 +1,15 @@
 #include "util.h"
 
+#include "creddefs.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
 
 void die(const char *message) {
-  STDOUT_WRITE("\x1b[2J");
-  STDOUT_WRITE("\x1b[H");
+  STDOUT_WRITE(SEQ_CLEAR);
+  STDOUT_WRITE(SEQ_CURS_RESET);
   perror(message);
   exit(EXIT_FAILURE);
 }

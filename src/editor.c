@@ -1,15 +1,12 @@
 #include "editor.h"
 
+#include "creddefs.h"
 #include "util.h"
 
 #include <errno.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
-#define SEQ_CLEAR "\x1b[2J"
-#define SEQ_CURS_RESET "\x1b[H"
 
 
 char editor_read_key() {

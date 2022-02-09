@@ -1,5 +1,6 @@
 #include "terminal.h"
 
+#include "creddefs.h"
 #include "util.h"
 
 #include <termios.h>
@@ -29,5 +30,7 @@ void term_enable_raw_mode() {
 }
 
 void term_restore() {
+  STDOUT_WRITE(SEQ_CLEAR);
+  STDOUT_WRITE(SEQ_CURS_RESET);
   CHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios), 0);
 }

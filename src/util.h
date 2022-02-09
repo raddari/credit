@@ -1,6 +1,9 @@
 #pragma once
 
 
+#define SEQ_CLEAR "\x1b[2J"
+#define SEQ_CURS_RESET "\x1b[H"
+
 #define S0_(x) #x
 #define S_(x) S0_(x)
 
