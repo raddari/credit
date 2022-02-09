@@ -10,7 +10,7 @@ static struct termios original_termios;
 
 
 void term_enable_raw_mode() {
-  QCHECK_EQ(tcgetattr(STDIN_FILENO, &original_termios), 0);
+  CHECK_EQ(tcgetattr(STDIN_FILENO, &original_termios), 0);
   struct termios raw = original_termios;
   // Miscellaneous flags for traditional "raw mode"
   raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON);
@@ -25,9 +25,9 @@ void term_enable_raw_mode() {
   raw.c_cc[VMIN] = 0;
   raw.c_cc[VTIME] = 1;
 
-  QCHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw), 0);
+  CHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw), 0);
 }
 
 void term_restore() {
-  QCHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios), 0);
+  CHECK_EQ(tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios), 0);
 }

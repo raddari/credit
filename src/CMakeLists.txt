@@ -4,4 +4,6 @@ target_sources(${CREDIT_EXE} PRIVATE
   terminal.h
   util.c
   util.h
+  input.c
+  input.h
   )

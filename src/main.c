@@ -1,3 +1,4 @@
+#include "input.h"
 #include "terminal.h"
 #include "util.h"
 
@@ -15,17 +16,7 @@ int main() {
 
   while (true) {
     refresh_screen();
-    char c = '\0';
-    QCHECK(read(STDIN_FILENO, &c, 1) >= 0 || errno == EAGAIN);
-    if (iscntrl(c)) {
-      printf("%d\n\r", c);
-    } else {
-      printf("%d ('%c')\n\r", c, c);
-    }
-
-    if (c == 'q') {
-      break;
-    }
+    process_keypress();
   }
 
   return EXIT_SUCCESS;
