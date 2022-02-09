@@ -45,7 +45,11 @@ void editor_refresh_screen() {
 
 void editor_draw_rows() {
   for (int row = 0; row < g_config.screen_rows; row++) {
-    STDOUT_WRITE("~\n\r");
+    STDOUT_WRITE("~");
+
+    if (row < g_config.screen_rows - 1) {
+      STDOUT_WRITE("\n\r");
+    }
   }
 }
 
