@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 
-static struct EditorConfig g_config;
+static EditorConfig g_config;
 
 
 char editor_read_key() {
