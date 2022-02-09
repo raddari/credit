@@ -6,6 +6,7 @@
 
 #define CHECK(expr) if (!(expr)) die(__FILE__ ":" S_(__LINE__) ": " S_(expr))
 #define CHECK_EQ(expr, eq) CHECK((expr) == (eq))
+#define CHECK_NE(expr, eq) CHECK((expr) != (eq))
 
 #define STDOUT_WRITE_BYTES(buffer, size) write(STDOUT_FILENO, (buffer), (size))
 #define STDOUT_WRITE(str) STDOUT_WRITE_BYTES((str), (sizeof (str)) - 1)
