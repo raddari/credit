@@ -12,7 +12,6 @@
 #define SEQ_CURS_RESET "\x1b[H"
 
 
-
 char editor_read_key() {
   ssize_t nread;
   char c;
