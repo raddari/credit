@@ -2,11 +2,15 @@
 
 #include "creddefs.h"
 #include "util/common.h"
+#include "util/strbuf.h"
 
 #include <errno.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+
+static void draw_rows(StrBuf *out);
 
 
 static EditorConfig g_config;
@@ -35,20 +39,24 @@ void editor_process_keypress() {
 }
 
 void editor_refresh_screen() {
-  STDOUT_WRITE(SEQ_CLEAR);
-  STDOUT_WRITE(SEQ_CURS_RESET);
+  StrBuf out = {0};
+  str_buf_append(&out, SEQ_CLEAR);
+  str_buf_append(&out, SEQ_CURS_RESET);
 
-  editor_draw_rows();
+  draw_rows(&out);
 
-  STDOUT_WRITE(SEQ_CURS_RESET);
+  str_buf_append(&out, SEQ_CURS_RESET);
+
+  STDOUT_WRITE_BYTES(out.buffer, out.len);
+  str_buf_destroy(&out);
 }
 
-void editor_draw_rows() {
+static void draw_rows(StrBuf *out) {
   for (int row = 0; row < g_config.screen_rows; row++) {
-    STDOUT_WRITE("~");
+    str_buf_append(out, "~");
 
     if (row < g_config.screen_rows - 1) {
-      STDOUT_WRITE("\n\r");
+      str_buf_append(out, "\n\r");
     }
   }
 }
