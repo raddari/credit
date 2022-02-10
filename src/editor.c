@@ -40,12 +40,15 @@ void editor_process_keypress() {
 
 void editor_refresh_screen() {
   StrBuf out = {0};
+
+  str_buf_append(&out, SEQ_CURS_HIDE);
   str_buf_append(&out, SEQ_CLEAR);
   str_buf_append(&out, SEQ_CURS_RESET);
 
   draw_rows(&out);
 
   str_buf_append(&out, SEQ_CURS_RESET);
+  str_buf_append(&out, SEQ_CURS_SHOW);
 
   STDOUT_WRITE_BYTES(out.buffer, out.len);
   str_buf_destroy(&out);
