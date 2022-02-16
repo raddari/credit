@@ -10,6 +10,9 @@
 #include <unistd.h>
 
 
+#define WELCOME_MESSAGE "Credit editor -- version " CREDIT_VERSION_STR
+
+
 static void draw_rows(StrBuf *out);
 
 
@@ -55,10 +58,18 @@ void editor_refresh_screen() {
 
 static void draw_rows(StrBuf *out) {
   for (int row = 0; row < g_config.screen_rows; row++) {
-    str_buf_append(out, "~");
+    if (row == g_config.screen_rows / 3) {
+      int welcome_len = sizeof WELCOME_MESSAGE;
+      if (welcome_len > g_config.screen_cols) {
+        welcome_len = g_config.screen_cols;
+      }
+      str_buf_append_bytes(out, WELCOME_MESSAGE, welcome_len);
+    } else {
+      str_buf_append(out, "~");
+    }
+
     // Clear each line rather than the whole screen
     str_buf_append(out, SEQ_ERASE_RIGHT);
-
     if (row < g_config.screen_rows - 1) {
       str_buf_append(out, "\n\r");
     }
