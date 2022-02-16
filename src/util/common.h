@@ -1,8 +1,14 @@
 #pragma once
 
 
+#include "config.h"
+
+
 #define S0_(x) #x
 #define S_(x) S0_(x)
+
+#define CREDIT_VERSION_STR \
+    S_(CREDIT_VERSION_MAJOR) "." S_(CREDIT_VERSION_MINOR) "." S_(CREDIT_VERSION_PATCH)
 
 #define CHECK(expr) if (!(expr)) die(__FILE__ ":" S_(__LINE__) ": " S_(expr))
 #define CHECK_EQ(expr, eq) CHECK((expr) == (eq))

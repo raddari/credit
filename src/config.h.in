@@ -1,0 +1,6 @@
+#pragma once
+
+
+#define CREDIT_VERSION_MAJOR @credit_VERSION_MAJOR@
+#define CREDIT_VERSION_MINOR @credit_VERSION_MINOR@
+#define CREDIT_VERSION_PATCH @credit_VERSION_PATCH@
