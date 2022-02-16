@@ -63,6 +63,15 @@ static void draw_rows(StrBuf *out) {
       if (welcome_len > g_config.screen_cols) {
         welcome_len = g_config.screen_cols;
       }
+
+      int padding = (g_config.screen_cols - welcome_len) / 2;
+      if (padding > 0) {
+        str_buf_append(out, "~");
+      }
+      while (padding-- > 0) {
+        str_buf_append(out, " ");
+      }
+
       str_buf_append_bytes(out, WELCOME_MESSAGE, welcome_len);
     } else {
       str_buf_append(out, "~");
