@@ -50,7 +50,7 @@ int term_window_size(int *rows, int *cols) {
     return term_cursor_pos(rows, cols);
   } else {
     SET_NON_NULL(rows, ws.ws_row);
-    SET_NON_NULL(rows, ws.ws_col);
+    SET_NON_NULL(cols, ws.ws_col);
     return 0;
   }
 }
